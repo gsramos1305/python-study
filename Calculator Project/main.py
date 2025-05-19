@@ -1,4 +1,5 @@
-from importlib.resources import open_text
+import art
+
 
 
 def add(n1, n2):
@@ -23,6 +24,7 @@ operations = {
 # print(operations['+'](2, 3))
 
 def calculator():
+    print(art.logo)
     should_continue = True
     num1 = float(input('First Number: '))
 
