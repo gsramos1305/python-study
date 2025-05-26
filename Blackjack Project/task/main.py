@@ -1,5 +1,4 @@
 import random
-from operator import truediv
 
 
 def deal_card():
@@ -8,15 +7,33 @@ def deal_card():
     return card
 
 def calculate_scores(cards):
-    if sum(cards) == 21 and len(cards) == 2:
+    if sum(cards) == 21:
         return 0
     if 11 in cards and sum(cards) > 21:
         user_hand.remove(11)
         user_hand.append(1)
-    if sum(cards) == 21:
-        return 0
     else:
         return sum(cards)
+
+def compare(score1, score2):
+    if score1 == score2:
+        if score1 and score2 == 0:
+            print("Computer got a Blackjack.")
+        else:
+            print("It's a Draw.")
+    elif score1 == 0:
+        print("You got a Blackjack!")
+    elif score2 == 0:
+        print("Computer got a Blackjack.")
+    elif score1 > 21:
+        print("You went over 21. You lose.")
+    elif score2 > 21:
+        print("Computer went over 21. You Win!")
+    else:
+        if score1 > score2:
+            print("You win!")
+        elif score2 > score1:
+            print("You Lose.")
 
 
 #----------------------------------------------------------------------------
@@ -29,20 +46,42 @@ game_over = False
 for n in range(2):
     user_hand.append(deal_card())
     computer_hand.append(deal_card())
-while not game_over:
-    user_score = calculate_scores(user_hand)
-    computer_score = calculate_scores(computer_hand)
-    print(f"Your hand: {user_hand}, current score: {user_score}")
-    print(f"Computer's first hand: {computer_hand[0]}")
 
-    if user_score == 0 or user_score > 21:
+user_score = calculate_scores(user_hand)
+computer_score = calculate_scores(computer_hand)
+print(f"Your hand: {user_hand}, current score: {user_score}")
+print(f"Computer's first hand: {computer_hand[0]}")
+
+while not game_over:
+    if len(computer_hand) > 2:
+        if computer_score == 0:
+            print("Computer got a Blackjack.")
+            game_over = True
+    if user_score == 0:
+        print("You got a Blackjack!")
+        game_over = True
+    elif user_score > 21:
+        print("You got over 21.")
+        game_over = True
+    elif computer_score > 21:
+        print("Computer went over 21. You Win!")
         game_over = True
     else:
         deal_new_card = input("Hit or Stop?: ").lower()
         if deal_new_card == "hit":
             user_hand.append(deal_card())
             calculate_scores(user_hand)
+            calculate_scores(computer_hand)
             user_score = sum(user_hand)
-            print(f"Your hand: {user_hand}\ncurrent score: {user_score}")
+            computer_score = sum(computer_hand)
+
+            print(f"Your hand: {user_hand}, current score: {user_score}")
+            print(f"Computer hand: {computer_hand}, computer score: {computer_score}")
+            computer_hand.append(deal_card())
+
         else:
-            gamer_over = True
+            computer_score = sum(computer_hand)
+            print(f"Computer hand: {computer_hand}, score: {computer_score}")
+            computer_hand.append(deal_card())
+            compare(user_score, computer_score)
+            game_over = True
