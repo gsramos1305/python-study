@@ -25,7 +25,6 @@ def playgame():
     print(logo)
     print("I'm thinking of a number between 1 and 100.")
     answer = randint(1, 100)
-    print(answer)
     turns = difficulty()
 
     guess = 0
