@@ -5,6 +5,7 @@ def is_resources_enough(drink_ingredients):
     for item in drink_ingredients:
         if drink_ingredients[item] >= resources[item]:
             print(f"Sorry, insufficient {item}.")
+            print("\n"*2)
             return False
     return True
 
@@ -23,16 +24,18 @@ def is_transaction_successful(money_received, drink_cost):
         return True
     else:
         print("Not enough money.")
+        print("\n"*2)
         return False
 
 def make_coffee(drink_name, order_ingredients):
     for item in order_ingredients:
         resources[item] -= order_ingredients[item]
     print(f"Here is your {drink_name}!")
-    print("\n"*3)
+    print("\n"*2)
 
 is_on = True
 while is_on:
+    print("\n")
     print("MENU: ")
     for drink in MENU:
         print(f"-{drink}: ${MENU[drink]['cost']}")
@@ -51,8 +54,8 @@ while is_on:
               print(f"\nMoney inserted: ${user_money:.2f}")
               confirm = input("Confirm? y/n: ")
               if confirm == 'y':
-                  is_transaction_successful(user_money, drink["cost"])
-                  make_coffee(choice, drink["ingredients"])
+                  if is_transaction_successful(user_money, drink["cost"]):
+                      make_coffee(choice, drink["ingredients"])
 
 
 
