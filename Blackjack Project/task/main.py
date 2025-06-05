@@ -37,51 +37,52 @@ def compare(score1, score2):
 
 
 #----------------------------------------------------------------------------
+keep_playing = True
+while keep_playing:
+    user_hand = []
+    computer_hand = []
+    game_over = False
 
-user_hand = []
-computer_hand = []
-game_over = False
 
+    for n in range(2):
+        user_hand.append(deal_card())
+        computer_hand.append(deal_card())
 
-for n in range(2):
-    user_hand.append(deal_card())
-    computer_hand.append(deal_card())
+    user_score = calculate_scores(user_hand)
+    computer_score = calculate_scores(computer_hand)
+    print(f"Your hand: {user_hand}, current score: {user_score}")
+    print(f"Computer's first hand: {computer_hand[0]}")
 
-user_score = calculate_scores(user_hand)
-computer_score = calculate_scores(computer_hand)
-print(f"Your hand: {user_hand}, current score: {user_score}")
-print(f"Computer's first hand: {computer_hand[0]}")
-
-while not game_over:
-    if len(computer_hand) > 2:
-        if computer_score == 0:
-            print("Computer got a Blackjack.")
+    while not game_over:
+        if len(computer_hand) > 2:
+            if computer_score == 0:
+                print("Computer got a Blackjack.")
+                game_over = True
+        if user_score == 0:
+            print("You got a Blackjack!")
             game_over = True
-    if user_score == 0:
-        print("You got a Blackjack!")
-        game_over = True
-    elif user_score > 21:
-        print("You got over 21.")
-        game_over = True
-    elif computer_score > 21:
-        print("Computer went over 21. You Win!")
-        game_over = True
-    else:
-        deal_new_card = input("Hit or Stop?: ").lower()
-        if deal_new_card == "hit":
-            user_hand.append(deal_card())
-            calculate_scores(user_hand)
-            calculate_scores(computer_hand)
-            user_score = sum(user_hand)
-            computer_score = sum(computer_hand)
-
-            print(f"Your hand: {user_hand}, current score: {user_score}")
-            print(f"Computer hand: {computer_hand}, computer score: {computer_score}")
-            computer_hand.append(deal_card())
-
+        elif user_score > 21:
+            print("You got over 21.")
+            game_over = True
+        elif computer_score > 21:
+            print("Computer went over 21. You Win!")
+            game_over = True
         else:
-            computer_score = sum(computer_hand)
-            print(f"Computer hand: {computer_hand}, score: {computer_score}")
-            computer_hand.append(deal_card())
-            compare(user_score, computer_score)
-            game_over = True
+            deal_new_card = input("Hit or Stop?: ").lower()
+            if deal_new_card == "hit":
+                user_hand.append(deal_card())
+                calculate_scores(user_hand)
+                calculate_scores(computer_hand)
+                user_score = sum(user_hand)
+                computer_score = sum(computer_hand)
+
+                print(f"Your hand: {user_hand}, current score: {user_score}")
+                print(f"Computer hand: {computer_hand}, computer score: {computer_score}")
+                computer_hand.append(deal_card())
+
+            else:
+                computer_score = sum(computer_hand)
+                print(f"Computer hand: {computer_hand}, score: {computer_score}")
+                computer_hand.append(deal_card())
+                compare(user_score, computer_score)
+                game_over = True
