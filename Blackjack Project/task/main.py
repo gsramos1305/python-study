@@ -26,9 +26,9 @@ def compare(score1, score2):
     elif score2 == 0:
         print("Computer got a Blackjack.")
     elif score1 > 21:
-        print("You went over 21. You lose.")
+        print("You went over 21.\nYou lose.")
     elif score2 > 21:
-        print("Computer went over 21. You Win!")
+        print("Computer went over 21.\nYou Win!")
     else:
         if score1 > score2:
             print("You win!")
@@ -77,7 +77,7 @@ while keep_playing:
                 computer_score = sum(computer_hand)
 
                 print(f"Your hand: {user_hand}, current score: {user_score}")
-                print(f"Computer hand: {computer_hand}, computer score: {computer_score}")
+                print(f"Computer hand: {computer_hand[0]}")
                 computer_hand.append(deal_card())
 
             else:
