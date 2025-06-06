@@ -18,22 +18,30 @@ def calculate_scores(cards):
 def compare(score1, score2):
     if score1 == score2:
         if score1 and score2 == 0:
-            print("Computer got a Blackjack.")
+            print("---Computer got a Blackjack---")
+            print("\n"*3)
         else:
-            print("It's a Draw.")
+            print("---It's a Draw---")
+            print("\n"*3)
     elif score1 == 0:
-        print("You got a Blackjack!")
+        print("---You got a Blackjack---")
+        print("\n"*3)
     elif score2 == 0:
-        print("Computer got a Blackjack.")
+        print("---Computer got a Blackjack---")
+        print("\n"*3)
     elif score1 > 21:
-        print("You went over 21.\nYou lose.")
+        print("---You went over 21.\nYou lose---")
+        print("\n"*3)
     elif score2 > 21:
-        print("Computer went over 21.\nYou Win!")
+        print("---Computer went over 21.\nYou Win---")
+        print("\n"*3)
     else:
         if score1 > score2:
             print("You win!")
+            print("\n"*3)
         elif score2 > score1:
             print("You Lose.")
+            print("\n"*3)
 
 
 #----------------------------------------------------------------------------
@@ -56,16 +64,20 @@ while keep_playing:
     while not game_over:
         if len(computer_hand) > 2:
             if computer_score == 0:
-                print("Computer got a Blackjack.")
+                print("---Computer got a Blackjack---")
+                print("\n"*3)
                 game_over = True
         if user_score == 0:
-            print("You got a Blackjack!")
+            print("---You got a Blackjack---")
+            print("\n"*3)
             game_over = True
         elif user_score > 21:
-            print("You got over 21.")
+            print("---You got over 21---")
+            print("\n"*3)
             game_over = True
         elif computer_score > 21:
-            print("Computer went over 21. You Win!")
+            print("---Computer went over 21. You Win---")
+            print("\n"*3)
             game_over = True
         else:
             deal_new_card = input("Hit or Stop?: ").lower()
