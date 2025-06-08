@@ -17,8 +17,22 @@ def rola():
     timmy.left(90)
     timmy.forward(200)
 
+def cabeça():
+    timmy.left(180)
+    timmy.forward(160)
+    timmy.right(90)
+    timmy.forward(40)
+    timmy.left(90)
+    timmy.forward(40)
+    timmy.left(180)
+    timmy.forward(40)
+    timmy.left(90)
+    timmy.forward(40)
+
 
 timmy = Turtle()
+timmy.shapesize(0.01)
+timmy.shape("classic")
 print(timmy)
 bola()
 timmy.left(90)
@@ -28,6 +42,7 @@ timmy.right(90)
 timmy.forward(40)
 timmy.left(90)
 rola()
+cabeça()
 
 
 my_screen = Screen()
