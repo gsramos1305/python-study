@@ -21,7 +21,7 @@ def draw_spirograph(gap):
         t.circle(100)
         t.setheading(t.heading() + gap)
     
-draw_spirograph(10)
+draw_spirograph(3)
 
 screen = tu.Screen()
 screen.exitonclick()
