@@ -15,19 +15,13 @@ t = tu.Turtle()
 t.speed("fastest")
 tu.colormode(255)
 
-angulo = 0
-for i in range (200):
-    # t.color(random_color())
-    angulo += 2
-    t.setheading(angulo)
-    t.up()
-    t.forward(100)
-    t.down()
-    t.circle(100)
-    t.up()
-    t.home()
-    t.down()
-
+def draw_spirograph(gap):
+    for i in range (int(360 / gap)):
+        t.color(random_color())
+        t.circle(100)
+        t.setheading(t.heading() + gap)
+    
+draw_spirograph(10)
 
 screen = tu.Screen()
 screen.exitonclick()
