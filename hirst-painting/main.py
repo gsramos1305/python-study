@@ -9,6 +9,16 @@ t.colormode(255)
 
 
 
+def center_grid(radius, circles_per_line, height):
+    spacing = radius * 2 * 1.5
+    total_width = circles_per_line * spacing
+    total_height = height * spacing
+
+    start_x = -total_width / 2
+    start_y = total_height / 2
+
+    tu.penup()
+    tu.goto(start_x, start_y)
 
 def next_line(radius, height):
     tu.home()
@@ -18,14 +28,36 @@ def next_line(radius, height):
     tu.right(90)
 
 def paint(radius, circles_per_line, height):
-    for n in range(1, height + 1):
-        for _ in range(circles_per_line):
-            tu.setheading(0)
-            tu.down()
+    spacing = radius * 2 * 1.5
+    total_width = circles_per_line * spacing
+    total_height = height * spacing
+
+    start_x = -total_width / 2
+    start_y = total_height / 2
+
+    tu.penup()
+    tu.goto(start_x, start_y)
+
+    for row in range(height):
+        for col in range(circles_per_line):
             tu.dot(radius, random.choice(rgb_colors))
-            tu.up()
-            tu.forward((radius * 2) * 1.50)
-        next_line(radius, n)
+            tu.forward(spacing)
+        # Move to next row
+        tu.backward(spacing * circles_per_line)
+        tu.right(90)
+        tu.forward(spacing)
+        tu.left(90)
+
+
+# def paint(radius, circles_per_line, height):
+#     for n in range(1, height + 1):
+#         for _ in range(circles_per_line):
+#             tu.setheading(0)
+#             tu.down()
+#             tu.dot(radius, random.choice(rgb_colors))
+#             tu.up()
+#             tu.forward((radius * 2) * 1.50)
+#         next_line(radius, n)
         
 
 
@@ -39,7 +71,8 @@ for color in colors:
     new_color = (r, g, b)
     rgb_colors.append(new_color)
 
-color = random.choice(rgb_colors)
+
+center_grid(15, 5, 5)
 print(color)
 
 paint(15, 5, 5)
