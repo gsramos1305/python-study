@@ -3,7 +3,7 @@ import turtle as t
 import random
 
 tu = t.Turtle()
-tu.speed('fastest')
+# tu.speed('fastest')
 tu.width(1)
 t.colormode(255)
 
@@ -71,11 +71,12 @@ for color in colors:
     new_color = (r, g, b)
     rgb_colors.append(new_color)
 
+radius = int(input("Radius: "))
+dots_per_line = int(input("Dots per line: "))
+height = int(input("Height: "))
 
-center_grid(15, 5, 5)
-print(color)
-
-paint(15, 5, 5)
+center_grid(radius, dots_per_line, height)
+paint(radius, dots_per_line, height)
 
 screen = t.Screen()
 screen.exitonclick()
