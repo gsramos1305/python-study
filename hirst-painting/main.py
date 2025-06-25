@@ -3,7 +3,7 @@ import turtle as t
 import random
 
 tu = t.Turtle()
-# tu.speed('fastest')
+tu.speed('fastest')
 tu.width(1)
 t.colormode(255)
 
